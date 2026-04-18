@@ -36,4 +36,8 @@ jobs:
 workflows:
   build_and_test:
     jobs:
+<<<<<<< HEAD
       - build
+=======
+      - build
+>>>>>>> 4be61994ea1286a73e8ed717b99aa76e5dbac45f
