@@ -5,10 +5,33 @@ jobs:
     docker:
       - image: cimg/python:3.10
 
+    working_directory: ~/project
+
     steps:
       - checkout
-      - run: pip install -r requirements.txt
-      - run: pytest
+
+      - run:
+          name: Upgrade pip
+          command: python -m pip install --upgrade pip
+
+      - run:
+          name: Install dependencies
+          command: |
+            if [ -f requirements.txt ]; then
+              pip install -r requirements.txt
+            fi
+            pip install pytest
+
+      - run:
+          name: Verify installation
+          command: |
+            python --version
+            pip list
+
+      - run:
+          name: Run tests
+          command: python -m pytest
+
 
 workflows:
   build_and_test:
